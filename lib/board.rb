@@ -1,4 +1,5 @@
 class Board
+    include Renderer
 
     attr_reader :columns
 
