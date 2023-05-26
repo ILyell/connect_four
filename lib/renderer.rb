@@ -5,17 +5,17 @@ module Renderer
   end
 
   def render_board(board)
-    puts "A B C D E F G"
+    puts " A B C D E F G"
 
     counter = 5
 
     while counter >= 0
       row = ""
       board.columns.keys.each do |key|
-        row += render_cell(board.columns[key][counter]) + " "
+        row += " #{render_cell(board.columns[key][counter])}"
       end
       # require "pry"; binding.pry
-      puts row
+      puts "\r #{row}"
       counter -= 1
     end
   end

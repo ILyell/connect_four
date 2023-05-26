@@ -10,3 +10,7 @@ board.welcome_message
 board.populate_columns
 
 board.render_board(board)
+
+board.columns[:a][0].set_ply_1
+
+board.render_board(board)
