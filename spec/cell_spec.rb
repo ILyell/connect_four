@@ -23,7 +23,7 @@ RSpec.describe Cell do
         end
     end
 
-    describe 'reader methods for getting a boolean from @status' do
+    describe 'query methods for getting a boolean from @status' do
         it '#empty?' do
 
             expect(@cell_1.empty?).to eq(true)
@@ -40,9 +40,41 @@ RSpec.describe Cell do
 
         it '#ply_2?' do 
             
-            expect(@cell_2.ply_2?).to eq(false)
+            expect(@cell_1.ply_2?).to eq(false)
             expect(@cell_2.ply_2?).to eq(false)
 
+        end
+    end
+
+    describe 'helper methods to change @status' do
+        it '#set_ply_1' do
+
+            expect(@cell_1.ply_1?).to eq(false)
+            expect(@cell_2.ply_1?).to eq(false)
+
+            @cell_1.set_ply_1
+            expect(@cell_1.ply_1?).to eq(true)
+            expect(@cell_2.ply_1?).to eq(false)
+            
+            @cell_2.set_ply_1
+            expect(@cell_1.ply_1?).to eq(true)
+            expect(@cell_2.ply_1?).to eq(true)
+
+        end
+
+        it '#set_ply_2' do
+
+            expect(@cell_1.ply_2?).to eq(false)
+            expect(@cell_2.ply_2?).to eq(false)
+
+            @cell_1.set_ply_1
+            expect(@cell_1.ply_2?).to eq(true)
+            expect(@cell_2.ply_2?).to eq(false)
+            
+            @cell_2.set_ply_2
+            expect(@cell_1.ply_2?).to eq(true)
+            expect(@cell_2.ply_2?).to eq(true)
+            
         end
     end
 end
