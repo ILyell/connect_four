@@ -67,7 +67,7 @@ RSpec.describe Cell do
             expect(@cell_1.ply_2?).to eq(false)
             expect(@cell_2.ply_2?).to eq(false)
 
-            @cell_1.set_ply_1
+            @cell_1.set_ply_2
             expect(@cell_1.ply_2?).to eq(true)
             expect(@cell_2.ply_2?).to eq(false)
             
