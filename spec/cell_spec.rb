@@ -40,8 +40,8 @@ RSpec.describe Cell do
 
         it '#ply_2?' do 
             
-            expect(@cell_2.play_2?).to eq(false)
-            expect(@cell_2.play_2?).to eq(false)
+            expect(@cell_2.ply_2?).to eq(false)
+            expect(@cell_2.ply_2?).to eq(false)
 
         end
     end
