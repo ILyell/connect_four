@@ -1,20 +1,24 @@
 class Board
 
-    attr_reader :col_a,
-                :col_b,
-                :col_c,
-                :col_d,
-                :col_e,
-                :col_f,
-                :col_g
-    
+    attr_reader :columns
+
     def initialize 
-        @col_a = []
-        @col_b = []
-        @col_c = []
-        @col_d = []
-        @col_e = []
-        @col_f = []
-        @col_g = []
+        @columns = {
+            a: [],
+            b: [],
+            c: [],
+            d: [],
+            e: [],
+            f: [],
+            g: []
+        }
+    end
+
+    def populate_columns
+        @columns.keys.each do |key|
+            6.times do
+                @columns[key] << Cell.new
+            end
+        end
     end
 end
