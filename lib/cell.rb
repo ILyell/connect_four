@@ -7,11 +7,7 @@ class Cell
     end
 
     def empty?
-        if @status == :empty
-            true
-        else
-            false
-        end
+        @status == :empty
     end
 
     def ply_1?
