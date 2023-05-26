@@ -19,11 +19,7 @@ class Cell
     end
 
     def ply_2?
-        if @status == :ply_2
-            true
-        else
-            false
-        end
+        @status == :ply_2
     end
 
     def set_ply_1
