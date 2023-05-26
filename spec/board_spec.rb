@@ -5,7 +5,7 @@ RSpec.describe do
         @board = Board.new
     end
 
-    desicribe '#initialize' do
+    describe '#initialize' do
         it 'exist' do
             expect(@board).to be_a(Board)
         end
