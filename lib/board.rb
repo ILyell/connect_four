@@ -24,7 +24,9 @@ class Board
     def add_piece(player, letter)
         if columns[letter][0].empty?
             columns[letter][0].set_ply(player)
-        elsif !columns[letter][0].empty?
+        elsif !columns[letter][5].empty?
+            false
+        else
             counter = 0
             until columns[letter][0 + counter].empty? do
                 counter += 1
