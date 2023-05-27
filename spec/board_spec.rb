@@ -123,7 +123,56 @@ RSpec.describe do
             expect(@board.columns[:a][1].ply_1?).to eq(true)
             expect(@board.columns[:a][2].ply_1?).to eq(false)
             expect(@board.columns[:c][0].ply_1?).to eq(false)
+        end
 
+        it 'uses the player argument to set the piece to the current player' do
+
+            @board.populate_columns
+
+            expect(@board.columns[:a][0].ply_2?).to eq(false)
+            @board.add_piece(:ply_2, :a)
+            expect(@board.columns[:a][0].ply_2?).to eq(true)
+            expect(@board.columns[:a][1].ply_2?).to eq(false)
+            expect(@board.columns[:b][0].ply_2?).to eq(false)
+            
+            @board.add_piece(:ply_2, :a)
+            expect(@board.columns[:a][0].ply_2?).to eq(true)
+            expect(@board.columns[:a][1].ply_2?).to eq(true)
+            expect(@board.columns[:a][2].ply_2?).to eq(false)
+            expect(@board.columns[:b][0].ply_2?).to eq(false)
+
+
+            @board.add_piece(:ply_2, :b)
+            expect(@board.columns[:b][0].ply_2?).to eq(true)
+            expect(@board.columns[:b][1].ply_2?).to eq(false)
+            expect(@board.columns[:a][0].ply_2?).to eq(true)
+            expect(@board.columns[:a][1].ply_2?).to eq(true)
+            expect(@board.columns[:a][2].ply_2?).to eq(false)
+            expect(@board.columns[:c][0].ply_2?).to eq(false)
+
+            @board.add_piece(:ply_2, :b)
+            expect(@board.columns[:b][0].ply_2?).to eq(true)
+            expect(@board.columns[:b][1].ply_2?).to eq(true)
+            expect(@board.columns[:b][2].ply_2?).to eq(false)
+            expect(@board.columns[:a][0].ply_2?).to eq(true)
+            expect(@board.columns[:a][1].ply_2?).to eq(true)
+            expect(@board.columns[:a][2].ply_2?).to eq(false)
+            expect(@board.columns[:c][0].ply_2?).to eq(false)
+        end
+
+        it 'returns false if column is full' do
+            @board.populate_columns
+            
+            @board.add_piece(:ply_1, :b)
+            @board.add_piece(:ply_1, :b)
+            @board.add_piece(:ply_1, :b)
+            @board.add_piece(:ply_1, :b)
+            @board.add_piece(:ply_1, :b)
+            @board.add_piece(:ply_1, :b)
+            
+            expect(@board.columns[:b][5].empty?).to be(false)
+            expect(@board.add_piece(:ply_1, :b)).to eq(false)
+            
         end
     end
 end
