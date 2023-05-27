@@ -27,8 +27,29 @@ describe "Turn" do
 
   describe "#valid_input?" do
 
-   
+    it "returns False if the user enters anything other than a single letter string A-G" do
+      expect(@turn_1.valid_input?("a")).to be true  
+      expect(@turn_1.valid_input?("B")).to be true  
+      expect(@turn_1.valid_input?("h")).to be false  
+      expect(@turn_1.valid_input?("column c")).to be false 
+      expect(@turn_1.valid_input?(3)).to be false 
+    end
 
+    it "returns False if the user enters the letter name of a full column" do
+      # Set the topmost cell of the B column to "X"
+      @board.columns[:b][5].set_ply_1
+
+      expect(@board.columns[:b][5].empty?).to be false
+
+      expect(@turn_1.valid_input?("b")).to be false  
+    end
+    
+    it "returns True if the user enters a single letter A-G into a column that is not full" do
+      expect(@board.columns[:a][5].empty?).to be true
+      
+      expect(@turn_1.valid_input?("a")).to be true  
+    end
+    
   end
 
   describe "#clean_input" do
