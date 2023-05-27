@@ -4,6 +4,7 @@ describe "Turn" do
   before do
     @player_1 = "player holder"
     @board = Board.new
+    @board.populate_columns
 
     @turn_1 = Turn.new(@player_1, @board)
   end
@@ -24,17 +25,20 @@ describe "Turn" do
     end
   end
 
-  describe "#valid_input?(<input>)" do
-    xit "returns True if the user enters a single letter A-G" do
+  describe "#valid_input?" do
 
-    end
+   
 
-    xit "returns False if the user enters anything other than a single letter A-G" do
+  end
 
-    end
+  describe "#clean_input" do
+    it "returns a single letter string as a lowercase symbol" do
+      input_1 = "A"
+      input_2 = "f"
 
-    xit "returns False if the user enters a full column" do
 
+      expect(@turn_1.clean_input(input_1)).to eq(:a)
+      expect(@turn_1.clean_input(input_2)).to eq(:f)
     end
   end
 
