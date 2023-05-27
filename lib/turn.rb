@@ -1,7 +1,7 @@
-require "./lib/renderer"
+require_relative "renderer.rb"
 
 class Turn
-  include Renderer
+  include Render
 
   attr_reader :player, :board
 
@@ -11,35 +11,38 @@ class Turn
   end
 
   def prompt_user
-    puts ""
-  end
+    render_board(@board)
 
-  def valid_input?(input)
-    # Guard clause for non-string input and longer than 1 letter
-    return false unless input.is_a?(String) and input.length == 1
+    puts "\nChoose a column A-G.\n\n"
 
-    clean_input = clean_input(input)
+    input = gets.chomp
+    
+    if !valid_column?(input)
+      puts "\"#{input}\" is not the name of a column. Just pick a letter A-G. It doesn't even have to be uppercase, we programmed around that.\n\n"
 
-    if !@board.columns.keys.include?(clean_input)
-      false
-    elsif !@board.columns[clean_input][5].empty?
-      false
+      prompt_user
+    elsif !open_column?(input)
+      puts "\"#{input}\" is full. Pick another column.\n\n"
+
+      prompt_user
     else
-      true
+      @board.add_piece(@player, clean_input(input))
     end
   end
 
-  # Turns user input into a key for Board.columns IE: clean_input("A") => :a
+  def valid_column?(input)
+    return false unless input.is_a?(String) and input.length == 1
+
+    valid_columns = @board.columns.keys
+
+    valid_columns.include?(clean_input(input))
+  end
+
+  def open_column?(input)
+    @board.columns[clean_input(input)][5].empty?
+  end
+
   def clean_input(input)    
     input.downcase.to_sym
   end
-
-  def place_piece(input)
-    # We haven't written this method in the Board class yet, so I put it here as "update_board" as a placeholder. once this method is written, we can make it the appropriate method.
-
-    # I'm also thinking that will this update the board object outside of the class? Will this persist after the fact?
-    # Will the next turn use the current turn's turn.board as the input board of a new turn? 
-    @board.update_board(@player, input)
-  end
-
 end

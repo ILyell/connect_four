@@ -17,7 +17,7 @@ describe "Turn" do
 
   describe "#prompt_user" do
     xit "asks the user to enter a letter A-G" do
-
+      # WROTE THIS METHOD, NEED TO WRITE TESTS
     end
 
     xit "displays an error message asks the user to enter another letter A-G if they previously entered an invalid column" do
@@ -25,31 +25,26 @@ describe "Turn" do
     end
   end
 
-  describe "#valid_input?" do
-
-    it "returns False if the user enters anything other than a single letter string A-G" do
-      expect(@turn_1.valid_input?("a")).to be true  
-      expect(@turn_1.valid_input?("B")).to be true  
-      expect(@turn_1.valid_input?("h")).to be false  
-      expect(@turn_1.valid_input?("column c")).to be false 
-      expect(@turn_1.valid_input?(3)).to be false 
+  describe "#open_column?" do
+    it "returns True if the user enters a valid but full column" do
+      @board.columns[:a][5].set_ply(:ply_1)
+  
+      expect(@board.columns[:a][5].empty?).to be false
+      expect(@board.columns[:b][5].empty?).to be true
+  
+      expect(@turn_1.open_column?("a")).to be false
+      expect(@turn_1.open_column?("b")).to be true
     end
+  end
 
-    it "returns False if the user enters the letter name of a full column" do
-      # Set the topmost cell of the B column to "X"
-      @board.columns[:b][5].set_ply_1
-
-      expect(@board.columns[:b][5].empty?).to be false
-
-      expect(@turn_1.valid_input?("b")).to be false  
+  describe "#valid_column?" do
+    it "checks if an input value is a valid column on the board" do
+      expect(@turn_1.valid_column?("a")).to be true  
+      expect(@turn_1.valid_column?("B")).to be true  
+      expect(@turn_1.valid_column?("h")).to be false  
+      expect(@turn_1.valid_column?("column c")).to be false 
+      expect(@turn_1.valid_column?(3)).to be false 
     end
-    
-    it "returns True if the user enters a single letter A-G into a column that is not full" do
-      expect(@board.columns[:a][5].empty?).to be true
-      
-      expect(@turn_1.valid_input?("a")).to be true  
-    end
-    
   end
 
   describe "#clean_input" do
@@ -60,12 +55,6 @@ describe "Turn" do
 
       expect(@turn_1.clean_input(input_1)).to eq(:a)
       expect(@turn_1.clean_input(input_2)).to eq(:f)
-    end
-  end
-
-  describe "#place_piece" do
-    xit "updates the board based on the user's column selection" do
-
     end
   end
 
