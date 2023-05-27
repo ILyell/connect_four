@@ -10,6 +10,10 @@ class Turn
     @board = board
   end
 
+  def prompt_user
+    puts ""
+  end
+
   def valid_input?(input)
     # Guard clause for non-string input and longer than 1 letter
     return false unless input.is_a?(String) and input.length == 1
