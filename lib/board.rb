@@ -34,4 +34,9 @@ class Board
             columns[letter][counter].set_ply(player)
         end
     end
+
+    # i feel like we should move this to a different class. Maybe the Game class once we make
+    def welcome_message
+        puts "Welcome to connect 4, yadda yadda yadda\n\n"
+    end
 end
