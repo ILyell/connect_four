@@ -12,7 +12,7 @@ class Turn
 
   def prompt_user
     render_board(@board)
-
+ 
     puts "\nChoose a column A-G.\n\n"
 
     input = gets.chomp
