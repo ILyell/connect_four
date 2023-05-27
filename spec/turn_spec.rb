@@ -63,20 +63,10 @@ describe "Turn" do
     end
   end
 
-  describe "#update_board" do
+  describe "#place_piece" do
     xit "updates the board based on the user's column selection" do
 
     end
   end
-
-  describe "#render_board" do
-    xit "renders the updated board in the terminal" do
-
-    end
-  end
-
-  # EVENTUALLY, CHECK FOR WINNING STATUS
-
-  
 
 end
