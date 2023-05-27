@@ -1,3 +1,5 @@
+require "./lib/renderer"
+
 class Board
     include Renderer
 
