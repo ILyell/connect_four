@@ -67,12 +67,13 @@ RSpec.describe do
     end
 
     describe '#add_piece' do
-        it 'takes a player and symbol argument' do
-        
+        it 'takes a player and column argument' do
+
+            @board.populate_columns
             @board.add_piece(:ply_1, :a)
         end
 
-        it 'adds a piece to the top of the board by changing the first cell to player' do
+        it 'adds a piece to the top of the @board by changing the first cell to player' do
 
             @board.populate_columns
             
@@ -89,6 +90,7 @@ RSpec.describe do
         end
 
         it 'adds a new piece ontop of the old piece' do
+
 
             @board.populate_columns
 

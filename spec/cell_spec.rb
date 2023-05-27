@@ -28,6 +28,9 @@ RSpec.describe Cell do
 
             expect(@cell_1.empty?).to eq(true)
             expect(@cell_2.empty?).to eq(true)
+            @cell_1.set_ply_1
+            expect(@cell_1.empty?).to eq(false)
+            expect(@cell_2.empty?).to eq(true)
 
         end
 
