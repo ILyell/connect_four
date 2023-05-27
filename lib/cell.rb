@@ -18,11 +18,7 @@ class Cell
         @status == :ply_2
     end
 
-    def set_ply_1
-        @status = :ply_1
-    end
-
-    def set_ply_2
-        @status = :ply_2
+    def set_ply(player)
+        @status = player
     end
 end

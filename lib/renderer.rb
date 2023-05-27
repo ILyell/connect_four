@@ -1,4 +1,4 @@
-module Renderer
+module Render
 
   def welcome_message
     puts "\nWelcome to CONNECT 4\n\n"

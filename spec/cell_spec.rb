@@ -28,6 +28,9 @@ RSpec.describe Cell do
 
             expect(@cell_1.empty?).to eq(true)
             expect(@cell_2.empty?).to eq(true)
+            @cell_1.set_ply(:ply_1)
+            expect(@cell_1.empty?).to eq(false)
+            expect(@cell_2.empty?).to eq(true)
 
         end
 
@@ -47,16 +50,16 @@ RSpec.describe Cell do
     end
 
     describe 'helper methods to change @status' do
-        it '#set_ply_1' do
+        it '#set_ply(ply_1)' do
 
             expect(@cell_1.ply_1?).to eq(false)
             expect(@cell_2.ply_1?).to eq(false)
 
-            @cell_1.set_ply_1
+            @cell_1.set_ply(:ply_1)
             expect(@cell_1.ply_1?).to eq(true)
             expect(@cell_2.ply_1?).to eq(false)
             
-            @cell_2.set_ply_1
+            @cell_2.set_ply(:ply_1)
             expect(@cell_1.ply_1?).to eq(true)
             expect(@cell_2.ply_1?).to eq(true)
 
@@ -67,11 +70,11 @@ RSpec.describe Cell do
             expect(@cell_1.ply_2?).to eq(false)
             expect(@cell_2.ply_2?).to eq(false)
 
-            @cell_1.set_ply_2
+            @cell_1.set_ply(:ply_2)
             expect(@cell_1.ply_2?).to eq(true)
             expect(@cell_2.ply_2?).to eq(false)
             
-            @cell_2.set_ply_2
+            @cell_2.set_ply(:ply_2)
             expect(@cell_1.ply_2?).to eq(true)
             expect(@cell_2.ply_2?).to eq(true)
             

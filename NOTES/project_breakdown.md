@@ -2,6 +2,46 @@
 welcome message
 Play/Quit
 
+
+
+
+## ruby connect_four
+
+- welcome_screen
+- get user input (assuming start game)
+- board.new
+- render_board
+- while not game over do :
+- player_1.turn?
+- turn.get_user_input
+- board.add_piece(turn_output)
+- render_board
+- board.game_state
+- Either Contiune to next turn or Endgame (Win/Loss/Draw)
+- turn.change_player?
+- player_2.turn
+- ...see previous
+- once endgame reached do
+- Render Win/Loss/Draw
+- Render restart?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Create Board 
      - 6 x 7
      A B C D E F G
