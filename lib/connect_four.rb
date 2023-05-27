@@ -6,20 +6,26 @@ require "pry"
 
 include Render
 
-board = Board.new
-
+game_start
 welcome_message
-turn_1 = Turn.new(:ply_1, board)
-turn_2 = Turn.new(:ply_2, board, is_cpu = true)
-
-board.populate_columns
-# binding.pry
-loop do
-    render_board(board)
-    board.add_piece(turn_1.player, turn_1.prompt_user)
-    render_board(board)
-    board.add_piece(turn_2.player, turn_2.prompt_user)
+start_input = gets.chomp
+if start_input.include?("P") || start_input.include?("p")
+    board = Board.new
+    turn_1 = Turn.new(:ply_1, board)
+    turn_2 = Turn.new(:ply_2, board, is_cpu = true)
+    board.populate_columns
+    loop do
+        render_board(board)
+        board.add_piece(turn_1.player, turn_1.prompt_user)
+        render_board(board)
+        board.add_piece(turn_2.player, turn_2.prompt_user)
+    end
+elsif start_input.include?("Q") || start_input.include?("q")
+    exit
+else
+    error_message(:invalid_option, start_input)
 end
+
 
 
 
