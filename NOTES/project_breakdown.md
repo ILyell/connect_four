@@ -126,5 +126,20 @@ get_chomp
       
 
 
+### POTENTIAL FUTURE AESTHETIC ITERATION?
 
-  
+1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣
+⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+⬜️ ⬜️ ⬜ 🔴 🟡 ⬜️ ⬜️
+OR 
+
+A  B  C  D  E  F  G
+
+⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+⬜️ ⬜️ ⬜ 🔴 🟡 ⬜️ ⬜️
+
+The spacing with letters and emojis in the terminal output is not consistent, so I think we would need to play around and find something that works.
