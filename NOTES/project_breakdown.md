@@ -38,7 +38,15 @@ Create Cells
  Fill board with cells
  
 Render board
-
+  system "clear"
+    print " A  B  C  D  E  F  G" 
+    board.columns.each do |column, cells|
+      row = ""
+      cells.each do |cell|
+        row << "#{render_cell(cell)} "
+      end
+      print " #{row}" 
+    end
 Player class: 
    @ply = ply_1
 
@@ -79,3 +87,4 @@ get_chomp
 
 
 
+  
