@@ -11,7 +11,7 @@ module Render
     elsif type == :full_column
       print "#{input} column is full!"
     elsif type == :invalid_option
-      print "Please enter a valid option"
+      print "Please enter a valid option\n"
     end
   end
 
@@ -42,6 +42,6 @@ module Render
   
   def turn_instruction
     system "clis"
-    puts "\nChoose a column A-G.\n\n"
+    puts "\nChoose a column A-G, or type 'quit' to quit.\n\n"
   end
 end

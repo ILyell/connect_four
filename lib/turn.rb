@@ -19,7 +19,9 @@ class Turn
     else
       turn_instruction
       input = gets.chomp
-      if !valid_column?(input)
+      if input.include?("quit")
+        exit
+      elsif !valid_column?(input)
         error_message(:invalid_column, input)
         prompt_user
       elsif !open_column?(input)

@@ -2,14 +2,13 @@ require_relative "board.rb"
 require_relative "cell.rb"
 require_relative "renderer.rb"
 require_relative "turn.rb"
+require_relative "game_start.rb"
 require "pry"
 
 include Render
-
+include GameStart
 game_start
-welcome_message
-start_input = gets.chomp
-if start_input.include?("P") || start_input.include?("p")
+if start
     board = Board.new
     turn_1 = Turn.new(:ply_1, board)
     turn_2 = Turn.new(:ply_2, board, is_cpu = true)
@@ -20,10 +19,6 @@ if start_input.include?("P") || start_input.include?("p")
         render_board(board)
         board.add_piece(turn_2.player, turn_2.prompt_user)
     end
-elsif start_input.include?("Q") || start_input.include?("q")
-    exit
-else
-    error_message(:invalid_option, start_input)
 end
 
 
