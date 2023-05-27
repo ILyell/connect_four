@@ -8,52 +8,78 @@ include Render
 
 board = Board.new
 
-board.welcome_message
+welcome_message
+turn_1 = Turn.new(:ply_1, board)
+turn_2 = Turn.new(:ply_2, board, is_cpu = true)
 
 board.populate_columns
+# binding.pry
+loop do
+    render_board(board)
+    board.add_piece(turn_1.player, turn_1.prompt_user)
+    render_board(board)
+    board.add_piece(turn_2.player, turn_2.prompt_user)
+end
 
-render_board(board)
 
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
-turn = Turn.new(:ply_1, board)
-turn.prompt_user
-turn = Turn.new(:ply_2, board)
-turn.prompt_user
+
+
+
+
+# while game_state(board)
+#     render_board(board)
+#     turn_player_1
+#     board.add(turn.player, turn.input)
+#     return if game_state(board)
+#     render_board(board)
+#     turn_player_2
+#     board(add(turn.player, turn.input))
+#     game_state(board)
+# end
+
+
+
+
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_1, board)
+# turn.prompt_user
+# turn = Turn.new(:ply_2, board)
+# turn.prompt_user
 
 
 

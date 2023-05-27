@@ -28,7 +28,10 @@ Play/Quit
 
 
 
-
+cpu_turn module
+   def 
+      [:a,:b,:c].random
+   end
 
 
 
