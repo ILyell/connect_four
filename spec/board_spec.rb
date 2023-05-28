@@ -160,4 +160,18 @@ RSpec.describe do
             expect(@board.columns[:c][0].ply_2?).to eq(false)
         end
     end
+
+    describe "#last_piece_placed" do
+        it "returns coordinates of the last piece placed" do
+            @board.populate_columns
+
+            @board.add_piece(:ply_1, :a)
+
+            expect(@board.last_piece).to eq([:a, 0])
+            
+            @board.add_piece(:ply_2, :a)
+            
+            expect(@board.last_piece).to eq([:a, 1])
+        end
+    end
 end
