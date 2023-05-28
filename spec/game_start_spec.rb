@@ -15,8 +15,10 @@ RSpec.describe GameStart do
             # :msg = 'p'
             # binding.pry
             allow($stdin).to receive(:gets).and_return('p')
-            input = $stdin.gets
-            expect(GameStart).to receive(:game_start_message).and_return(true) 
+            # start
+            expect(start).to receive($stdin.gets).and_return(true)
+            # expect(GameStart).to receive(:game_start_message).and_return(true) 
+        
         end
 
         xit 'exits if Q or q is pressed' do
