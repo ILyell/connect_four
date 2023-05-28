@@ -5,29 +5,30 @@ class Turn
 
   attr_reader :player, :board
 
-  def initialize(player, board)
+  def initialize(player, board, is_cpu = false)
     @player = player
     @board = board
+    @is_cpu = is_cpu
   end
 
   def prompt_user
-    render_board(@board)
- 
-    puts "\nChoose a column A-G.\n\n"
-
-    input = gets.chomp
-    
-    if !valid_column?(input)
-      puts "\"#{input}\" is not the name of a column. Just pick a letter A-G. It doesn't even have to be uppercase, we programmed around that.\n\n"
-
-      prompt_user
-    elsif !open_column?(input)
-      puts "\"#{input}\" is full. Pick another column.\n\n"
-
-      prompt_user
+    if @is_cpu == true
+      cpu_input = cpu_turn
+      prompt_user if !open_column?(cpu_input)
+      cpu_input
     else
-      @board.add_piece(@player, clean_input(input))
-    end
+      turn_instruction
+      input = gets.chomp
+      if !valid_column?(input)
+        error_message(:invalid_column, input)
+        prompt_user
+      elsif !open_column?(input)
+        error_message(:full_column, input)
+        prompt_user
+      else
+        clean_input(input)
+      end
+    end  
   end
 
   def valid_column?(input)
@@ -44,5 +45,9 @@ class Turn
 
   def clean_input(input)    
     input.downcase.to_sym
+  end
+
+  def cpu_turn
+    @board.columns.keys.sample
   end
 end
