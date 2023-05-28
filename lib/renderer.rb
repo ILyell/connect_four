@@ -11,7 +11,7 @@ module Render
     elsif type == :full_column
       print "#{input} column is full!"
     elsif type == :invalid_option
-      print "Please enter a valid option\n"
+      printgit `` "Please enter a valid option\n"
     end
   end
 
