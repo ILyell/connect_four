@@ -4,6 +4,7 @@ require './lib/board'
 require './lib/turn'
 require './lib/renderer'
 require 'pry'
+require './lib/game_start'
 
 require './lib/renderer'
 RSpec.configure do |config|

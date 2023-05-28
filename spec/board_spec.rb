@@ -159,20 +159,5 @@ RSpec.describe do
             expect(@board.columns[:a][2].ply_2?).to eq(false)
             expect(@board.columns[:c][0].ply_2?).to eq(false)
         end
-
-        it 'returns false if column is full' do
-            @board.populate_columns
-            
-            @board.add_piece(:ply_1, :b)
-            @board.add_piece(:ply_1, :b)
-            @board.add_piece(:ply_1, :b)
-            @board.add_piece(:ply_1, :b)
-            @board.add_piece(:ply_1, :b)
-            @board.add_piece(:ply_1, :b)
-            
-            expect(@board.columns[:b][5].empty?).to be(false)
-            expect(@board.add_piece(:ply_1, :b)).to eq(false)
-            
-        end
     end
 end

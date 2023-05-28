@@ -49,7 +49,7 @@ RSpec.describe Cell do
         end
     end
 
-    describe 'helper methods to change @status' do
+    describe 'command methods to change @status' do
         it '#set_ply(ply_1)' do
 
             expect(@cell_1.ply_1?).to eq(false)
@@ -65,7 +65,7 @@ RSpec.describe Cell do
 
         end
 
-        it '#set_ply_2' do
+        it '#set_ply(ply_2)' do
 
             expect(@cell_1.ply_2?).to eq(false)
             expect(@cell_2.ply_2?).to eq(false)
