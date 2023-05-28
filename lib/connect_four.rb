@@ -7,19 +7,27 @@ require "pry"
 
 include Render
 include GameStart
-game_start
-if start
+
+#loop do 
+    game_start_message
+    start
     board = Board.new
     turn_1 = Turn.new(:ply_1, board)
     turn_2 = Turn.new(:ply_2, board, is_cpu = true)
     board.populate_columns
-    loop do
+    loop do  #while game_over != true
         render_board(board)
         board.add_piece(turn_1.player, turn_1.prompt_user)
+        #game_state check
+        #break if game_state
         render_board(board)
         board.add_piece(turn_2.player, turn_2.prompt_user)
+        #game_state check
     end
-end
+    #render_board(board)
+    #game over message
+    #break if play_again != "y"
+#end
 
 
 

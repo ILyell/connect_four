@@ -3,7 +3,7 @@ require_relative "renderer.rb"
 module GameStart
     include Render
 
-    def game_start
+    def game_start_message
         welcome_message
     end
 
