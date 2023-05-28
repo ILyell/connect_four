@@ -26,9 +26,9 @@ module Render
     puts "    #{render_cell(board.columns[:a][0])} #{render_cell(board.columns[:b][0])} #{render_cell(board.columns[:c][0])} #{render_cell(board.columns[:d][0])} #{render_cell(board.columns[:e][0])} #{render_cell(board.columns[:f][0])} #{render_cell(board.columns[:g][0])}"
   end
 
-  def turn_message(player)
-    puts "its #{clean_player}"
-  end
+  # def turn_message(player)
+  #   puts "its #{clean_player}"
+  # end
 
   def render_cell(cell)
     if cell.empty?
