@@ -12,10 +12,13 @@ class Turn
   end
 
   def prompt_user
-    if @is_cpu == true
+    if @is_cpu 
       cpu_input = cpu_turn
-      prompt_user if !open_column?(cpu_input)
-      cpu_input
+      if open_column?(cpu_input)
+        cpu_input
+      else
+        prompt_user
+      end 
     else
       turn_instruction
       input = gets.chomp
@@ -51,5 +54,9 @@ class Turn
 
   def cpu_turn
     @board.columns.keys.sample
+  end
+
+  def update_board(board)
+    @board = board
   end
 end
