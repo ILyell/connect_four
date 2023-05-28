@@ -161,7 +161,7 @@ RSpec.describe do
         end
     end
 
-    describe "#last_piece_placed" do
+    describe "#last_piece" do
         it "returns coordinates of the last piece placed" do
             @board.populate_columns
 
