@@ -19,7 +19,28 @@ RSpec.describe GameOver do
   # (two kinds of diagonal)
   # Checks what player may have won
   # calls the renderer to display a message
-    
+  describe '#game_win_horizontal?' do
+    it "can win with four pieces in a row horizontally" do
+
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :c)
+      
+      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_2, :d)
+      
+      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :d)
+      
+      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+
+    end
+  end
 
 
   describe "#game_win_vertical?" do
