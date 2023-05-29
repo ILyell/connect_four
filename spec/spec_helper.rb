@@ -3,10 +3,12 @@ require './lib/cell'
 require './lib/board'
 require './lib/turn'
 require './lib/renderer'
-require 'pry'
 require './lib/game_start'
+require './lib/game_over'
+require 'pry'
 
 require './lib/renderer'
 RSpec.configure do |config|
     config.formatter = :documentation
 end
+
