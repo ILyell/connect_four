@@ -19,6 +19,82 @@ RSpec.describe GameOver do
   # (two kinds of diagonal)
   # Checks what player may have won
   # calls the renderer to display a message
+  describe '#game_over' do 
+    it 'returns false if not a game over state, and the winning player if game over for horizontal wins' do
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :c)
+
+      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      @board_1.add_piece(:ply_2, :d)
+      
+      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(false)
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :d)
+      
+      expect(game_over?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      
+      @board_2.add_piece(:ply_1, :b)
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_1, :b)
+      @board_2.add_piece(:ply_2, :d)
+      @board_2.add_piece(:ply_1, :c)
+      @board_2.add_piece(:ply_2, :a) 
+      @board_2.add_piece(:ply_1, :d)
+      @board_2.add_piece(:ply_2, :e)
+      
+      expect(game_over?(@board_2, @board_2.last_piece)).to eq(false)
+      
+      @board_2.add_piece(:ply_1, :e)
+      
+      expect(game_over?(@board_2, @board_2.last_piece)).to eq(:ply_1)
+
+    end
+
+    it 'returns false if not a game over state, and the winning player if game over for vertical wins' do
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
+      
+      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_2, :a)
+      
+      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      
+      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_1, :b)
+
+      expect(game_over?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      
+      @board_2.add_piece(:ply_2, :b)
+      @board_2.add_piece(:ply_2, :b)
+      @board_2.add_piece(:ply_2, :b)
+      
+      expect(game_over?(@board_2, @board_2.last_piece)).to eq(false)
+
+      @board_2.add_piece(:ply_1, :b)
+
+      expect(game_over?(@board_2, @board_2.last_piece)).to eq(false)
+
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_1, :b)
+      @board_2.add_piece(:ply_2, :c)
+
+      expect(game_over?(@board_2, @board_2.last_piece)).to eq(:ply_2)
+    end
+    
+  end
+
   describe '#game_win_horizontal?' do
     it "can win with four pieces in a row horizontally" do
 
@@ -101,15 +177,9 @@ RSpec.describe GameOver do
     end
   end
 
-
-  #   it "can win with four pieces in a row horizontally" do
-
-  #   end
-
-  #   it "can win with four pieces in a row diagonally" do
-
-  #   end
-  # end
-
-
+  describe '#restart_game' do
+    xit 'restarts game with y or Y input, displays :invalid_input other wise' do
+      #test goes here
+    end
+  end
 end

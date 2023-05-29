@@ -5,7 +5,7 @@ include Render
     game_win_vertical?(board, coordinates) || game_win_horizontal?(board, coordinates)
   end
 
-  def game_win_vertical?(board, coordinates) # coordinates => [:a, 3]
+  def game_win_vertical?(board, coordinates)
     if coordinates[1] < 3
       false
     else
@@ -49,7 +49,6 @@ include Render
       else
         result = false
       end
-      # binding.pry
     end
     counter = 0
     result
