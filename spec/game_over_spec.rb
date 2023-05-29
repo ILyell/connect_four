@@ -39,6 +39,21 @@ RSpec.describe GameOver do
       
       expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
 
+      @board_2.add_piece(:ply_1, :b)
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_1, :b)
+      @board_2.add_piece(:ply_2, :d)
+      @board_2.add_piece(:ply_1, :c)
+      @board_2.add_piece(:ply_2, :a) 
+      @board_2.add_piece(:ply_1, :d)
+      @board_2.add_piece(:ply_2, :e)
+      
+      expect(game_win_horizontal?(@board_2, @board_2.last_piece)).to eq(false)
+      
+      @board_2.add_piece(:ply_1, :e)
+      
+      expect(game_win_horizontal?(@board_2, @board_2.last_piece)).to eq(:ply_1)
+      
     end
   end
 
