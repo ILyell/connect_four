@@ -3,8 +3,10 @@ include GameOver
 
 RSpec.describe GameOver do
   before do
-    @board = Board.new
-    @board.populate_columns
+    @board_1 = Board.new
+    @board_1.populate_columns
+    @board_2 = Board.new
+    @board_2.populate_columns
   end
 
   # CHECKS win conditions
@@ -22,15 +24,44 @@ RSpec.describe GameOver do
 
   describe "#game_win_vertical?" do
     it "can win with four pieces in a row vertically" do
-      @board.columns[:a][0].set_ply(:ply_1)
-      @board.columns[:a][1].set_ply(:ply_1)
-      @board.columns[:a][2].set_ply(:ply_1)
       
-      expect(game_win_vertical?(@board, [:a, 2])).to eq(false)
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
+      
+      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_2, :a)
+      
+      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      
+      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(false)
+      
+      @board_1.add_piece(:ply_1, :b)
 
-      @board.columns[:a][3].set_ply(:ply_1)
+      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      
+      @board_2.add_piece(:ply_2, :b)
+      @board_2.add_piece(:ply_2, :b)
+      @board_2.add_piece(:ply_2, :b)
+      
+      expect(game_win_vertical?(@board_2, @board_2.last_piece)).to eq(false)
 
-      expect(game_win_vertical?(@board, [:a, 3])).to eq(true)
+      @board_2.add_piece(:ply_1, :b)
+
+      expect(game_win_vertical?(@board_2, @board_2.last_piece)).to eq(false)
+
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_2, :c)
+      @board_2.add_piece(:ply_1, :b)
+      @board_2.add_piece(:ply_2, :c)
+
+      expect(game_win_vertical?(@board_2, @board_2.last_piece)).to eq(:ply_2)
     end
   end
 

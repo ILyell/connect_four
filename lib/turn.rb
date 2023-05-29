@@ -9,7 +9,7 @@ class Turn
     @player = player
     @board = board
     @is_cpu = is_cpu
-    @last_input = nil #
+    @last_input = nil 
   end
 
   def prompt_user

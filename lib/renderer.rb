@@ -44,4 +44,16 @@ module Render
     system "clis"
     puts "\nChoose a column A-G, or type 'quit' to quit.\n\n"
   end
+
+  def game_win_message(player)
+    if player == :ply_1
+      puts "You win!"
+    else
+      puts "You lose!"
+    end
+  end
+
+  def render_restart
+    puts "Enter Y to play again N to quit."
+  end
 end
