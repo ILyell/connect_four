@@ -54,10 +54,26 @@ include Render
     result
   end
 
+
+
   def game_restart?
     render_restart
     input = gets.chomp
     true if input.include?("y") || input.include?("Y")
   end
 
+  def game_win_diagonal?(board, coordinates)
+    column = coordinates[0] # :a
+    row = coordinates[1] # 0
+    player = board.columns[column][row].status # :ply_1
+  end
+
+  def get_diagonals(board, coordinates)
+    column = coordinates[0] # :a
+    row = coordinates[1] # 0
+    player = board.columns[column][row].status # :ply_1
+    counter  = 0
+    piece_index = board.columns.keys.index(column)
+    diagonal_array << board.columns[board.columns.keys[piece_index] + counter][row + counter]
+  end
 end
