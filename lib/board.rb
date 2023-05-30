@@ -35,4 +35,8 @@ class Board
             @last_piece = [letter, counter]
         end
     end
+
+    def full_column?(column)
+        !@columns[column][5].empty?
+    end
 end
