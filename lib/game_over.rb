@@ -68,12 +68,69 @@ include Render
     player = board.columns[column][row].status # :ply_1
   end
 
-  def get_diagonals(board, coordinates)
+  def get_diagonals_NE_SW(board, coordinates)
     column = coordinates[0] # :a
     row = coordinates[1] # 0
     player = board.columns[column][row].status # :ply_1
+
+    column_keys = board.columns.keys
+    
     counter  = 0
-    piece_index = board.columns.keys.index(column)
-    diagonal_array << board.columns[board.columns.keys[piece_index] + counter][row + counter]
+    
+    piece_index = column_keys.index(column)
+    
+    diagonal_array = []
+    
+    (piece_index + 1).times do
+      break if ((piece_index - counter) < 0) or ((row - counter) < 0) 
+      diagonal_array << board.columns[column_keys[(piece_index - counter)]][row - counter]
+      counter += 1
+    end
+
+    diagonal_array.reverse!
+
+    counter = 1
+    
+    (5 - piece_index).times do
+      diagonal_array << board.columns[column_keys[(piece_index + counter)]][row + counter]
+      counter += 1
+    end
+    require "pry"; binding.pry
+    diagonal_array
+  end
+
+  def get_diagonals_NW_SE(board, coordinates)
+    column = coordinates[0] # :d
+    row = coordinates[1] # 0
+    player = board.columns[column][row].status # :ply_1
+
+    column_keys = board.columns.keys
+    
+    counter  = 0
+    
+    column_index = column_keys.index(column) # 3
+    
+    diagonal_array = []
+    
+    # Gets NW Diagonals
+    (column_index + 1).times do
+      break if (column_index - counter) < 0
+      diagonal_array << board.columns[column_keys[(column_index - counter)]][row + counter]
+      counter += 1
+    end
+    
+    diagonal_array.reverse!
+    
+    counter = 1
+    
+    (5 - column_index).times do #2 times do
+      # require "pry"; binding.pry
+      break if (row - counter) < 0
+      diagonal_array << board.columns[column_keys[(column_index + counter)]][row - counter]
+      counter += 1
+    end
+    
+    # require "pry"; binding.pry
+    diagonal_array
   end
 end
