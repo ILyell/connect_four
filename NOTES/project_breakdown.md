@@ -132,12 +132,12 @@ get_chomp
 ### POTENTIAL FUTURE AESTHETIC ITERATION?
 
   1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣
-5 ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
-4 ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+5 ⬜️ 🔴 ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+4 ⬜️ ⬜️ 🔴 ⬜️ ⬜️ ⬜️ ⬜️
 3 ⬜️ ⬜️ ⬜️ 🔴 ⬜️ ⬜️ ⬜️
-2 ⬜️ ⬜️ ⬜️ 🔴 ⬜️ ⬜️ ⬜️
-1 ⬜️ ⬜️ ⬜️ 🔴 ⬜️ ⬜️ ⬜️
-0 ⬜️ ⬜️ ⬜ 🔴 🟡 ⬜️ ⬜️
+2 ⬜️ ⬜️ ⬜️ ⬜️ 🔴 ⬜️ ⬜️
+1 ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️ ⬜️
+0 ⬜️ ⬜️ ⬜ ⬜️ ⬜️ ⬜️ ⬜️
  
 
 A  B  C  D  E  F  G
@@ -148,3 +148,13 @@ A  B  C  D  E  F  G
 ⬜️ ⬜️ ⬜ 🔴 🟡 ⬜️ ⬜️
 
 The spacing with letters and emojis in the terminal output is not consistent, so I think we would need to play around and find something that works.
+
+
+
+     0 1 2 3 4 5 6
+   5 * * * * * * *
+   4 * * * * * * *
+   3 * * * X * * *
+   2 * * X * * * *
+   1 * X * * * * *
+   0 X * * * * * *
