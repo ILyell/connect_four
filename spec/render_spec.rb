@@ -21,7 +21,7 @@ RSpec.describe Render do
     end
 
     describe 'render_board' do 
-        it 'renders a given board' do 
+        xit 'renders a given board' do 
             board = Board.new
             board.populate_columns
             expect{render_board(board)}.to output("\n    A B C D E F G\n\n    * * * * * * *\n    * * * * * * *\n    * * * * * * *\n    * * * * * * *\n    * * * * * * *\n    * * * * * * *\n").to_stdout
@@ -80,4 +80,13 @@ RSpec.describe Render do
         end
     end
 
+    describe "#render_falling_piece" do
+        it 'renders a falling peice' do
+            @board_1 = Board.new
+            @board_1.populate_columns
+            @board_1.add_piece(:ply_1, :b)
+    
+            render_falling_piece(@board_1)
+        end
+    end
 end

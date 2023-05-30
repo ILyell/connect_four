@@ -2,7 +2,7 @@ module Render
 
   def welcome_message
     # system "clear"
-    puts "\nWelcome to CONNECT 4\n\nEnter P to play or Q to quit!"
+    puts "\n    Welcome to CONNECT 4\n\nEnter P to play or Q to quit!"
   end
 
   def error_message(type, input)
@@ -27,7 +27,7 @@ module Render
   end
 
   # def turn_message(player)
-  #   puts "its #{clean_player}"
+  #   puts "its #{clean_player}'s turn!"
   # end
 
   def render_cell(cell)
@@ -55,5 +55,21 @@ module Render
 
   def render_restart
     puts "Enter Y to play again N to quit."
+  end
+
+  def render_falling_piece(board)
+    last_piece = board.columns[board.last_piece[0]][board.last_piece[1]]
+    player = last_piece.status
+    board.columns[board.last_piece[0]][((board.last_piece[1]..5))].reverse.each do |piece|
+      last_piece.set_ply(:empty)
+      render_board(board)
+      piece.set_ply(player)
+      render_board(board)
+      sleep 0.50
+      piece.set_ply(:empty)
+      render_board(board)
+    end
+    last_piece.set_ply(player)
+    render_board(board)
   end
 end
