@@ -245,4 +245,6 @@ RSpec.describe GameOver do
       expect(game_win_diagonal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
     end
   end
+
+  def '#game_over_draw?'
 end

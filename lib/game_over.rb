@@ -2,7 +2,7 @@ module GameOver
 include Render
 
   def game_over?(board, coordinates)
-    game_win_vertical?(board, coordinates) || game_win_horizontal?(board, coordinates) || game_win_diagonal?(board, coordinates)
+    game_win_vertical?(board, coordinates) || game_win_horizontal?(board, coordinates) || game_win_diagonal?(board, coordinates) || game_over_draw?(board)
   end
 
   def game_win_vertical?(board, coordinates)
@@ -23,7 +23,7 @@ include Render
         end
       end
       if counter == 4
-        player
+                 
       else
         false
       end
@@ -169,5 +169,15 @@ include Render
     
     # require "pry"; binding.pry
     diagonal_array
+  end
+
+  def game_over_draw?(board)
+    draw = false
+    count = 0
+    board.columns.keys.each do |column|
+      count += 1 if board.full_column?(column)
+    end
+    draw = :draw if count == 7
+    draw
   end
 end
