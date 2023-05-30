@@ -23,6 +23,7 @@ loop do
         render_board(board)
         turn_1.update_board(board)
         board.add_piece(turn_1.player, turn_1.prompt_user)
+        # binding.pry
         render_falling_piece(board)
         break if game_over?(board, board.last_piece) == :ply_1
         render_board(board)

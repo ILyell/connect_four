@@ -182,4 +182,24 @@ RSpec.describe GameOver do
       #test goes here
     end
   end
+
+  describe '#game_win_diagonal' do
+    it 'can check south-west diagonal' do
+      @board_1.add_piece(:ply_1, :a)
+
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      
+      @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :c)
+      
+      @board_1.add_piece(:ply_1, :d)
+      @board_1.add_piece(:ply_1, :d)
+      @board_1.add_piece(:ply_1, :d)
+      @board_1.add_piece(:ply_1, :d)
+
+      expect(game_win_diagonal(@board_1, @board_1.last_piece)).to eq(:ply_1)
+    end
+  end
 end

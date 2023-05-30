@@ -27,7 +27,7 @@ module Render
   end
 
   # def turn_message(player)
-  #   puts "its #{clean_player}'s turn!"
+  #   puts "Its #{clean_player}'s turn!"
   # end
 
   def render_cell(cell)
