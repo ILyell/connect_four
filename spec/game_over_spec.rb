@@ -2,9 +2,10 @@ require "spec_helper"
 include GameOver
 
 RSpec.describe GameOver do
-  before do
+  before(:each) do
     @board_1 = Board.new
     @board_1.populate_columns
+
     @board_2 = Board.new
     @board_2.populate_columns
   end
@@ -178,7 +179,7 @@ RSpec.describe GameOver do
   end
 
   describe '#restart_game' do
-    xit 'restarts game with y or Y input, displays :invalid_input other wise' do
+    it 'restarts game with y or Y input, displays :invalid_input other wise' do
       #test goes here
     end
   end
@@ -186,48 +187,46 @@ RSpec.describe GameOver do
   #EXPAND TESTING
   describe "#get_diagonals_NE_SW" do
     it "returns an array of diagonal NE -> SW cells relative to input coordinates" do
-      # @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
       
-      # @board_1.add_piece(:ply_1, :b)
-      # @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
       
-      # @board_1.add_piece(:ply_1, :c)
-      # @board_1.add_piece(:ply_1, :c)
-      # @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :c)
       
-      # @board_1.add_piece(:ply_1, :d)
-      # @board_1.add_piece(:ply_1, :d)
-      # @board_1.add_piece(:ply_1, :d)
-      
-      @board_1.add_piece(:ply_1, :g)
-
+      @board_1.add_piece(:ply_1, :d)
+      @board_1.add_piece(:ply_1, :d)
+      @board_1.add_piece(:ply_1, :d)
+      @board_1.add_piece(:ply_1, :d)
 
       get_diagonals_NE_SW(@board_1, @board_1.last_piece)
     end
   end
   
   describe "#get_diagonals_NW_SE" do
-    it "returns an array of diagonal NE -> SW cells relative to input coordinates" do
-      # @board_1.add_piece(:ply_1, :a)
-      # @board_1.add_piece(:ply_1, :a)
-      # @board_1.add_piece(:ply_1, :a)
-      
-      # @board_1.add_piece(:ply_1, :b)
-      # @board_1.add_piece(:ply_1, :b)
-      # @board_1.add_piece(:ply_1, :b)
-      
-      # @board_1.add_piece(:ply_1, :c)
-      # @board_1.add_piece(:ply_1, :c)
-      
-      # @board_1.add_piece(:ply_1, :d)
+    it "returns an array of diagonal NW -> SE cells relative to input coordinates" do
       @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
+      @board_1.add_piece(:ply_1, :a)
+      
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      @board_1.add_piece(:ply_1, :b)
+      
+      @board_1.add_piece(:ply_1, :c)
+      @board_1.add_piece(:ply_1, :c)
+      
+      @board_1.add_piece(:ply_1, :d)
 
       get_diagonals_NW_SE(@board_1, @board_1.last_piece)
     end
   end
 
   describe '#game_win_diagonal?' do
-    it 'can check if a player won by diagonal' do
+    it 'can check if a player won by diagonal: Example #1' do
       @board_1.add_piece(:ply_1, :a)
 
       @board_1.add_piece(:ply_1, :b)
@@ -244,7 +243,42 @@ RSpec.describe GameOver do
 
       expect(game_win_diagonal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
     end
+
+    it "can check if a player won by diagonal: example #2" do
+      @board_1.add_piece(:ply_1, :c)
+
+      @board_1.add_piece(:ply_1, :d)
+      @board_1.add_piece(:ply_1, :d)
+      
+      @board_1.add_piece(:ply_1, :e)
+      @board_1.add_piece(:ply_1, :e)
+      @board_1.add_piece(:ply_1, :e)
+      
+      @board_1.add_piece(:ply_1, :f)
+      @board_1.add_piece(:ply_1, :f)
+      @board_1.add_piece(:ply_1, :f)
+      @board_1.add_piece(:ply_1, :f)
+
+      expect(game_win_diagonal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+    end
+    
+    it "can check if a player won by diagonal: example #3" do
+      6.times { @board_1.add_piece(:ply_1, :g) }
+      
+      5.times { @board_1.add_piece(:ply_1, :f) }
+      
+      4.times { @board_1.add_piece(:ply_1, :e) }
+      
+      2.times { @board_1.add_piece(:ply_2, :d) }
+      @board_1.add_piece(:ply_1, :d)
+
+      expect(game_win_diagonal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+    end
   end
 
-  def '#game_over_draw?'
+  describe '#game_over_draw?' do
+    it "can check if there is a draw" do
+
+    end
+  end
 end
