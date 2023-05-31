@@ -16,7 +16,6 @@ loop do
     game_start_message
     start
     board = Board.new
-    
     turn_1 = Turn.new(:ply_1, board)
     turn_2 = Turn.new(:ply_2, board)
     
