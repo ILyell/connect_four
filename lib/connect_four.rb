@@ -16,23 +16,31 @@ loop do
     game_start_message
     start
     board = Board.new
+    
     turn_1 = Turn.new(:ply_1, board)
-    turn_2 = Turn.new(:ply_2, board, true)
+    turn_2 = Turn.new(:ply_2, board)
+    
     board.populate_columns
+    
     loop do
         render_board(board)
         turn_1.update_board(board)
+        
         board.add_piece(turn_1.player, turn_1.prompt_user)
-        # binding.pry
         # render_falling_piece(board)
         break if game_over?(board, board.last_piece) == (:ply_1 || :draw)
+        
         render_board(board)
         turn_2.update_board(board)
+        
         board.add_piece(turn_2.player, turn_2.prompt_user)
         # render_falling_piece(board)
+        
         break if game_over?(board, board.last_piece) == (:ply_2 || :draw)
     end
+
     render_board(board)
+    
     if game_over?(board, board.last_piece) == :ply_1
         game_win_message(:ply_1)
     else 
