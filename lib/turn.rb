@@ -5,11 +5,10 @@ class Turn
 
   attr_reader :player, :board
 
-  def initialize(player, board, is_cpu = false)
-    @player = player
+  def initialize(player, board)
+    @player = player.player
     @board = board
-    @is_cpu = is_cpu
-    @last_input = nil 
+    @is_cpu = player.is_cpu? 
   end
 
   def prompt_user
