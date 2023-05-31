@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "Turn" do
   before do
-    @player_1 = "player holder"
+    @player_1 = Player.new("Player", :ply_1)
     @board = Board.new
     @board.populate_columns
 

@@ -16,11 +16,18 @@ loop do
     game_start_message
     start
     board = Board.new
-    turn_1 = Turn.new(:ply_1, board)
-    turn_2 = Turn.new(:ply_2, board)
+    
     
     board.populate_columns
-    
+    player_1 = Player.new(gets.chomp, :ply_1)
+    if 1player 
+        player_2 = Player.new("CPU")
+    elsif 2player
+        player_2 = Player.new(gets.chomp, :ply_)
+        
+    end
+    turn_1 = Turn.new(player_1, board)
+    turn_2 = Turn.new(player_2, board)
     loop do
         render_board(board)
         turn_1.update_board(board)
