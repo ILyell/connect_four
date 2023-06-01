@@ -1,4 +1,6 @@
+
 class Board 
+
     attr_reader :columns, :last_piece
 
     def initialize 
