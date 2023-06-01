@@ -17,16 +17,6 @@ module Render
     puts "Enter Q to QUIT".center(69)
   end
 
-  def error_message(type, input)
-    if type == :invalid_column
-      print "#{input} is an invalid column"
-    elsif type == :full_column
-      print "#{input} column is full!"
-    elsif type == :invalid_option
-      print "Please enter a valid option\n"
-    end
-  end
-
   def render_board(board) 
     system "clear"
     
@@ -47,11 +37,17 @@ module Render
     puts "       ╠══╩══╩══╩══╩══╩══╩══╣"
     puts "      ═╩═                  ═╩═ "
   end
-  
-  # def turn_message(player)
-  #   puts "Its #{clean_player}'s turn!"
-  # end
 
+  def error_message(type, input)
+    if type == :invalid_column
+      print "\n\"#{input}\" is not a valid column.\nPlease choose a valid column A-G.\n"
+    elsif type == :full_column
+      print "Column #{input.upcase} is full! Choose an open one.\n"
+    elsif type == :invalid_option
+      print "Please enter a valid option\n"
+    end
+  end
+  
   def render_cell(cell)
     if cell.empty?
       "  "
@@ -62,9 +58,23 @@ module Render
     end
   end
   
+  def turn_identifier(player)
+    if player.player == :ply_1
+      piece_flair = "🔴"
+    else
+      piece_flair = "🔵"
+    end
+
+    puts "It's #{piece_flair}#{player.name}'s turn"
+  end
+
   def turn_instruction
     system "clis"
     puts "\nChoose a column A-G, or type 'quit' to quit.\n\n"
+  end
+
+  def enter_name_prompt
+    puts "\n What's your name?"
   end
 
   def game_win_message(player)
@@ -73,6 +83,10 @@ module Render
     else
       puts "\n         You lose!"
     end
+  end
+
+  def game_draw_message
+    puts "It's a draw"
   end
 
   def render_restart

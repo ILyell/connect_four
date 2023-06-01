@@ -4,6 +4,7 @@ require_relative "renderer.rb"
 require_relative "turn.rb"
 require_relative "game_start.rb"
 require_relative "game_over.rb"
+require_relative "player.rb"
 
 require "pry"
 
@@ -19,38 +20,55 @@ loop do
     
     
     board.populate_columns
-    player_1 = Player.new(gets.chomp, :ply_1)
-    if 1player 
-        player_2 = Player.new("CPU")
-    elsif 2player
-        player_2 = Player.new(gets.chomp, :ply_)
-        
-    end
+
+    enter_name_prompt
+
+    player_1 = Player.new(gets.chomp, :ply_1) 
+    player_2 = Player.new("CPU", :ply_2, true)
+    
     turn_1 = Turn.new(player_1, board)
     turn_2 = Turn.new(player_2, board)
-    loop do
-        render_board(board)
-        turn_1.update_board(board)
-        
-        board.add_piece(turn_1.player, turn_1.prompt_user)
-        # render_falling_piece(board)
-        break if game_over?(board, board.last_piece) == (:ply_1 || :draw)
-        
-        render_board(board)
-        turn_2.update_board(board)
-        
-        board.add_piece(turn_2.player, turn_2.prompt_user)
-        # render_falling_piece(board)
-        
-        break if game_over?(board, board.last_piece) == (:ply_2 || :draw)
-    end
 
     render_board(board)
     
-    if game_over?(board, board.last_piece) == :ply_1
-        game_win_message(:ply_1)
-    else 
-        game_win_message(:ply_2)
+    turn_number = 1
+
+    until game_over?(board, board.last_piece) != false
+        # Determines if it's P1 or P2's turn
+        if turn_number.odd?
+            current_player = player_1
+        else
+            current_player = player_2
+        end
+
+        # Render the board, say whose turn it is, and give instructions on the turn.
+        render_board(board)
+        turn_identifier(current_player)
+        turn_instruction
+        
+        input = gets.chomp.to_s
+        until turn_1.valid_input?(input)
+            turn_instruction
+            input = gets.chomp
+        end
+
+        input = turn_1.clean_input(input)
+
+        board.add_piece(current_player, input)
+        turn_number += 1
     end
+
+    render_board(board)
+
+    end_condition = game_over?(board, board.last_piece)
+
+    if end_condition == :draw
+        game_draw_message
+    elsif end_condition == :ply_1
+        game_win_message(:ply_1)
+    elsif
+        game_win_message(:ply_1)
+    end
+    
     break if !game_restart?
 end

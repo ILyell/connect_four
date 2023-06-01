@@ -177,4 +177,10 @@ include Render
     draw = :draw if count == 7
     draw
   end
+
+  def quit(input)
+    return nil unless input.is_a?(String)
+    
+    exit if input.downcase == "quit"
+  end
 end
