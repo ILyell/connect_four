@@ -39,4 +39,8 @@ class Board
     def full_column?(column)
         !@columns[column][5].empty?
     end
+    
+    def change_last_piece(coordinates)
+        @last_piece = coordinates
+    end
 end
