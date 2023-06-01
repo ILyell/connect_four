@@ -101,7 +101,7 @@ module Render
       render_board(board)
       piece.set_ply(player)
       render_board(board)
-      sleep 0.05
+      sleep 0.10
       piece.set_ply(:empty)
       render_board(board)
     end

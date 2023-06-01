@@ -55,8 +55,8 @@ loop do
         end
         input = turn_1.clean_input(input)
         board.add_piece(player_1.player, input)
+        render_falling_piece(board)
         break if game_over?(board) != false
-        render_board(board)
         
         turn_identifier(player_2)
         turn_instruction
@@ -73,6 +73,7 @@ loop do
             input = turn_1.clean_input(input)
         end
         board.add_piece(player_2.player, input)
+        render_falling_piece(board)
         break if game_over?(board) != false
     end
 
@@ -84,7 +85,7 @@ loop do
         game_draw_message
     elsif end_condition == :ply_1
         game_win_message(player_1)
-    elsif
+    elsif end_condition == :ply_2
         game_win_message(player_2)
     end
     
