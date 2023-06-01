@@ -25,17 +25,6 @@ describe "Turn" do
     end
   end
 
-  describe "#open_column?" do
-    it "returns True if the user enters a valid but full column" do
-      @board.columns[:a][5].set_ply(:ply_1)
-  
-      expect(@board.columns[:a][5].empty?).to be false
-      expect(@board.columns[:b][5].empty?).to be true
-  
-      expect(@turn_1.open_column?("a")).to be false
-      expect(@turn_1.open_column?("b")).to be true
-    end
-  end
 
   describe "#valid_column?" do
     it "checks if an input value is a valid column on the board" do

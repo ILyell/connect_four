@@ -20,12 +20,17 @@ start
 loop do
     system "clear"
     puts "Enter one for one player or two for two player!"
-    input = gets.chomp
+    players = gets.chomp.to_s
+    until (players == "one") || (players =="One")|| ((players == "two") || (players =="Two"))  
+        turn_instruction
+        players = gets.chomp.to_s
+        error_message(:invalid_input, input)
+    end
     enter_name_prompt
     player_1 = Player.new(gets.chomp, :ply_1) 
-    if input == "one"
+    if (players == "one") ||  (players == "One")
         player_2 = Player.new("CPU", :ply_2, true)
-    elsif input == "two"
+    elsif (players == "two") || (players == "Two")
         enter_name_prompt
         player_2 = Player.new(gets.chomp, :ply_2)
     end
@@ -64,10 +69,9 @@ loop do
             until turn_1.valid_input?(input)
                 turn_instruction
                 input = gets.chomp.to_s
-                input = turn_1.clean_input(input)
             end
+            input = turn_1.clean_input(input)
         end
-        
         board.add_piece(player_2.player, input)
         break if game_over?(board) != false
     end
@@ -79,9 +83,9 @@ loop do
     if end_condition == :draw
         game_draw_message
     elsif end_condition == :ply_1
-        game_win_message(:ply_1)
+        game_win_message(player_1)
     elsif
-        game_win_message(:ply_1)
+        game_win_message(player_2)
     end
     
     break if !game_restart?

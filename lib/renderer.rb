@@ -78,15 +78,15 @@ module Render
   end
 
   def game_win_message(player)
-    if player == :ply_1
-      puts "\n         You win!"
-    else
-      puts "\n         You lose!"
+    if player.player == :ply_1
+      puts "\n            #{player.name} Wins!"
+    elsif player.player == :ply_2
+      puts "\n            #{player.name} Wins!"
     end
   end
 
   def game_draw_message
-    puts "It's a draw"
+    puts "It's a draw!"
   end
 
   def render_restart

@@ -161,17 +161,33 @@ RSpec.describe do
         end
     end
 
-    describe "#last_piece" do
-        it "returns coordinates of the last piece placed" do
+    describe 'full column?' do
+        it 'returns a boolean of column is full' do
+            @board.populate_columns
+            
+            @board.add_piece(:ply_1, :a)
+            @board.add_piece(:ply_1, :a)
+            @board.add_piece(:ply_1, :a)
+            @board.add_piece(:ply_1, :a)
+            expect(@board.full_column?(:a)).to eq(false)
+            @board.add_piece(:ply_1, :a)
+            @board.add_piece(:ply_1, :a)
+            expect(@board.full_column?(:a)).to eq(true)
+
+        end
+    end
+
+    describe "#change_last_piece" do
+        it "edits the coordinates of the last piece placed" do
             @board.populate_columns
 
             @board.add_piece(:ply_1, :a)
 
             expect(@board.last_piece).to eq([:a, 0])
             
-            @board.add_piece(:ply_2, :a)
+            @board.change_last_piece([:a, 2])
             
-            expect(@board.last_piece).to eq([:a, 1])
+            expect(@board.last_piece).to eq([:a, 2])
         end
     end
 end
