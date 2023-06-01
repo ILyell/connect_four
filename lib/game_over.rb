@@ -1,12 +1,10 @@
 module GameOver
 include Render
 
-  def game_over?(board, coordinates)
-    return false if coordinates.nil?
-
-    game_win_vertical?(board, coordinates) or 
-    game_win_horizontal?(board, coordinates) or 
-    game_win_diagonal?(board, coordinates) or
+  def game_over?(board)
+    game_win_vertical?(board) or 
+    game_win_horizontal?(board) or 
+    game_win_diagonal?(board) or
     game_over_draw?(board)
   end
 
@@ -16,9 +14,9 @@ include Render
     true if input.include?("y") || input.include?("Y")
   end
 
-  def game_win_horizontal?(board, coordinates)
-    column = coordinates[0]
-    row = coordinates[1]
+  def game_win_horizontal?(board)
+    column = board.last_piece[0]
+    row = board.last_piece[1]
     player = board.columns[column][row].status
     result = nil
     counter = 0
@@ -40,12 +38,12 @@ include Render
     result
   end
 
-  def game_win_vertical?(board, coordinates)
-    if coordinates[1] < 3
+  def game_win_vertical?(board)
+    column = board.last_piece[0]
+    row = board.last_piece[1]
+    if row < 3
       false
     else
-      column = coordinates[0]
-      row = coordinates[1]
       player = board.columns[column][row].status
       counter = 1
       3.times do
@@ -66,12 +64,12 @@ include Render
   end
 
   
-  def game_win_diagonal?(board, coordinates)
-    diagonals = [get_diagonals_NE_SW(board, coordinates), get_diagonals_NW_SE(board, coordinates)]
+  def game_win_diagonal?(board)
+    diagonals = [get_diagonals_NE_SW(board), get_diagonals_NW_SE(board)]
     
-    column = coordinates[0]
-    row = coordinates[1]
-    player = board.columns[column][row].status # :ply_1
+    column = board.last_piece[0]
+    row = board.last_piece[1]
+    player = board.columns[column][row].status
     
     winner = false
     diagonals.each do |diagonal|
@@ -87,7 +85,6 @@ include Render
           counter = 0
         end
       end
-      # require "pry"; binding.pry
 
       if counter >= 4
         winner = player
@@ -97,10 +94,10 @@ include Render
     winner
   end
   
-  def get_diagonals_NE_SW(board, coordinates)
-    column = coordinates[0] # :a
-    row = coordinates[1] # 0
-    player = board.columns[column][row].status # :ply_1
+  def get_diagonals_NE_SW(board)
+    column = board.last_piece[0]
+    row = board.last_piece[1]
+    player = board.columns[column][row].status
     
     column_keys = board.columns.keys
     
@@ -129,24 +126,22 @@ include Render
       diagonal_array << cell unless cell.nil?
       counter += 1
     end
-    # require "pry"; binding.pry
     diagonal_array
   end
   
-  def get_diagonals_NW_SE(board, coordinates)
-    column = coordinates[0] # :d
-    row = coordinates[1] # 0
-    player = board.columns[column][row].status # :ply_1
+  def get_diagonals_NW_SE(board)
+    column = board.last_piece[0]
+    row = board.last_piece[1]
+    player = board.columns[column][row].status
     
     column_keys = board.columns.keys
     
     
-    column_index = column_keys.index(column) # 3
+    column_index = column_keys.index(column)
     
     diagonal_array = []
     counter  = 0
     
-    # Gets NW Diagonals
     (column_index + 1).times do
       break if (column_index - counter) < 0
       
@@ -161,8 +156,7 @@ include Render
     
     counter = 1
     
-    (6 - column_index).times do #2 times do
-      # require "pry"; binding.pry
+    (6 - column_index).times do
       break if (row - counter) < 0
       
       cell = board.columns[column_keys[(column_index + counter)]][row - counter]
@@ -171,7 +165,6 @@ include Render
       
       counter += 1
     end
-    # require "pry"; binding.pry
     diagonal_array
   end
   

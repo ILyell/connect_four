@@ -26,16 +26,16 @@ RSpec.describe GameOver do
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :c)
 
-      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_over?(@board_1)).to eq(false)
       @board_1.add_piece(:ply_2, :d)
       
-      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_win_horizontal?(@board_1)).to eq(false)
       @board_1.add_piece(:ply_1, :a)
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :c)
       @board_1.add_piece(:ply_1, :d)
       
-      expect(game_over?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      expect(game_over?(@board_1)).to eq(:ply_1)
       
       @board_2.add_piece(:ply_1, :b)
       @board_2.add_piece(:ply_2, :c)
@@ -46,11 +46,11 @@ RSpec.describe GameOver do
       @board_2.add_piece(:ply_1, :d)
       @board_2.add_piece(:ply_2, :e)
       
-      expect(game_over?(@board_2, @board_2.last_piece)).to eq(false)
+      expect(game_over?(@board_2)).to eq(false)
       
       @board_2.add_piece(:ply_1, :e)
       
-      expect(game_over?(@board_2, @board_2.last_piece)).to eq(:ply_1)
+      expect(game_over?(@board_2)).to eq(:ply_1)
 
     end
 
@@ -59,31 +59,31 @@ RSpec.describe GameOver do
       @board_1.add_piece(:ply_1, :a)
       @board_1.add_piece(:ply_1, :a)
       
-      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_over?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_2, :a)
       
-      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_over?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :b)
       
-      expect(game_over?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_over?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_1, :b)
 
-      expect(game_over?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      expect(game_over?(@board_1)).to eq(:ply_1)
       
       @board_2.add_piece(:ply_2, :b)
       @board_2.add_piece(:ply_2, :b)
       @board_2.add_piece(:ply_2, :b)
       
-      expect(game_over?(@board_2, @board_2.last_piece)).to eq(false)
+      expect(game_over?(@board_2)).to eq(false)
 
       @board_2.add_piece(:ply_1, :b)
 
-      expect(game_over?(@board_2, @board_2.last_piece)).to eq(false)
+      expect(game_over?(@board_2)).to eq(false)
 
       @board_2.add_piece(:ply_2, :c)
       @board_2.add_piece(:ply_2, :c)
@@ -91,7 +91,7 @@ RSpec.describe GameOver do
       @board_2.add_piece(:ply_1, :b)
       @board_2.add_piece(:ply_2, :c)
 
-      expect(game_over?(@board_2, @board_2.last_piece)).to eq(:ply_2)
+      expect(game_over?(@board_2)).to eq(:ply_2)
     end
     
   end
@@ -103,18 +103,18 @@ RSpec.describe GameOver do
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :c)
       
-      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_win_horizontal?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_2, :d)
       
-      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_win_horizontal?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_1, :a)
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :c)
       @board_1.add_piece(:ply_1, :d)
       
-      expect(game_win_horizontal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      expect(game_win_horizontal?(@board_1)).to eq(:ply_1)
 
       @board_2.add_piece(:ply_1, :b)
       @board_2.add_piece(:ply_2, :c)
@@ -125,11 +125,11 @@ RSpec.describe GameOver do
       @board_2.add_piece(:ply_1, :d)
       @board_2.add_piece(:ply_2, :e)
       
-      expect(game_win_horizontal?(@board_2, @board_2.last_piece)).to eq(false)
+      expect(game_win_horizontal?(@board_2)).to eq(false)
       
       @board_2.add_piece(:ply_1, :e)
       
-      expect(game_win_horizontal?(@board_2, @board_2.last_piece)).to eq(:ply_1)
+      expect(game_win_horizontal?(@board_2)).to eq(:ply_1)
       
     end
   end
@@ -142,31 +142,31 @@ RSpec.describe GameOver do
       @board_1.add_piece(:ply_1, :a)
       @board_1.add_piece(:ply_1, :a)
       
-      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_win_vertical?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_2, :a)
       
-      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_win_vertical?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :b)
       @board_1.add_piece(:ply_1, :b)
       
-      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(false)
+      expect(game_win_vertical?(@board_1)).to eq(false)
       
       @board_1.add_piece(:ply_1, :b)
 
-      expect(game_win_vertical?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      expect(game_win_vertical?(@board_1)).to eq(:ply_1)
       
       @board_2.add_piece(:ply_2, :b)
       @board_2.add_piece(:ply_2, :b)
       @board_2.add_piece(:ply_2, :b)
       
-      expect(game_win_vertical?(@board_2, @board_2.last_piece)).to eq(false)
+      expect(game_win_vertical?(@board_2)).to eq(false)
 
       @board_2.add_piece(:ply_1, :b)
 
-      expect(game_win_vertical?(@board_2, @board_2.last_piece)).to eq(false)
+      expect(game_win_vertical?(@board_2)).to eq(false)
 
       @board_2.add_piece(:ply_2, :c)
       @board_2.add_piece(:ply_2, :c)
@@ -174,7 +174,7 @@ RSpec.describe GameOver do
       @board_2.add_piece(:ply_1, :b)
       @board_2.add_piece(:ply_2, :c)
 
-      expect(game_win_vertical?(@board_2, @board_2.last_piece)).to eq(:ply_2)
+      expect(game_win_vertical?(@board_2)).to eq(:ply_2)
     end
   end
 
@@ -201,7 +201,7 @@ RSpec.describe GameOver do
       @board_1.add_piece(:ply_1, :d)
       @board_1.add_piece(:ply_1, :d)
 
-      get_diagonals_NE_SW(@board_1, @board_1.last_piece)
+      get_diagonals_NE_SW(@board_1)
     end
   end
   
@@ -221,7 +221,7 @@ RSpec.describe GameOver do
       
       @board_1.add_piece(:ply_1, :d)
 
-      get_diagonals_NW_SE(@board_1, @board_1.last_piece)
+      get_diagonals_NW_SE(@board_1)
     end
   end
 
@@ -241,7 +241,7 @@ RSpec.describe GameOver do
       @board_1.add_piece(:ply_1, :d)
       @board_1.add_piece(:ply_1, :d)
 
-      expect(game_win_diagonal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      expect(game_win_diagonal?(@board_1)).to eq(:ply_1)
     end
 
     it "can check if a player won by diagonal: example #2" do
@@ -259,7 +259,7 @@ RSpec.describe GameOver do
       @board_1.add_piece(:ply_1, :f)
       @board_1.add_piece(:ply_1, :f)
 
-      expect(game_win_diagonal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      expect(game_win_diagonal?(@board_1)).to eq(:ply_1)
     end
     
     it "can check if a player won by diagonal: example #3" do
@@ -272,7 +272,7 @@ RSpec.describe GameOver do
       2.times { @board_1.add_piece(:ply_2, :d) }
       @board_1.add_piece(:ply_1, :d)
 
-      expect(game_win_diagonal?(@board_1, @board_1.last_piece)).to eq(:ply_1)
+      expect(game_win_diagonal?(@board_1)).to eq(:ply_1)
     end
   end
 
