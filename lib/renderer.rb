@@ -65,7 +65,7 @@ module Render
       piece_flair = "🔵"
     end
 
-    puts "It's #{piece_flair}#{player.name}'s turn"
+    puts "It's #{piece_flair} #{player.name}'s turn"
   end
 
   def turn_instruction

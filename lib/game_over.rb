@@ -2,6 +2,7 @@ module GameOver
 include Render
 
   def game_over?(board)
+  return false if board.last_piece.nil?
     game_win_vertical?(board) or 
     game_win_horizontal?(board) or 
     game_win_diagonal?(board) or

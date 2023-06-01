@@ -5,62 +5,78 @@ require_relative "turn.rb"
 require_relative "game_start.rb"
 require_relative "game_over.rb"
 require_relative "player.rb"
+require_relative "cpu_module.rb"
 
 require "pry"
 
 include Render
 include GameStart
 include GameOver
+include CPU
 
+system "clear"
+game_start_message
+start
 loop do
     system "clear"
-    game_start_message
-    start
-    board = Board.new
-    
-    
-    board.populate_columns
-
+    puts "Enter one for one player or two for two player!"
+    input = gets.chomp
     enter_name_prompt
-
     player_1 = Player.new(gets.chomp, :ply_1) 
-    player_2 = Player.new("CPU", :ply_2, true)
-    
+    if input == "one"
+        player_2 = Player.new("CPU", :ply_2, true)
+    elsif input == "two"
+        enter_name_prompt
+        player_2 = Player.new(gets.chomp, :ply_2)
+    end
+    board = Board.new
+    board.populate_columns
     turn_1 = Turn.new(player_1, board)
     turn_2 = Turn.new(player_2, board)
 
     render_board(board)
     
-    turn_number = 1
 
-    until game_over?(board, board.last_piece) != false
-        # Determines if it's P1 or P2's turn
-        if turn_number.odd?
-            current_player = player_1
-        else
-            current_player = player_2
-        end
 
-        # Render the board, say whose turn it is, and give instructions on the turn.
+    loop do  
         render_board(board)
-        turn_identifier(current_player)
+        turn_identifier(player_1)
         turn_instruction
         
         input = gets.chomp.to_s
         until turn_1.valid_input?(input)
             turn_instruction
-            input = gets.chomp
+            input = gets.chomp.to_s
         end
-
         input = turn_1.clean_input(input)
-
-        board.add_piece(current_player, input)
-        turn_number += 1
+        board.add_piece(player_1.player, input)
+        break if game_over?(board) != false
+        render_board(board)
+        
+        turn_identifier(player_2)
+        turn_instruction
+        
+        if player_2.is_cpu?
+            # binding.pry
+            cpu_input = cpu_turn(board)
+            until board.full_column?(cpu_input) == false
+                cpu_input = cpu_turn(board)
+            end
+        else 
+            input = gets.chomp.to_s
+            until turn_1.valid_input?(input)
+                turn_instruction
+                input = gets.chomp.to_s
+            end
+        end
+        input = turn_1.clean_input(input)
+        board.add_piece(player_2.player, input)
+        break if game_over?(board) != false
     end
 
     render_board(board)
 
-    end_condition = game_over?(board, board.last_piece)
+    end_condition = game_over?(board)
 
     if end_condition == :draw
         game_draw_message
