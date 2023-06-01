@@ -58,18 +58,16 @@ loop do
         
         if player_2.is_cpu?
             # binding.pry
-            cpu_input = cpu_turn(board)
-            until board.full_column?(cpu_input) == false
-                cpu_input = cpu_turn(board)
-            end
+            input = cpu_turn(board)
         else 
             input = gets.chomp.to_s
             until turn_1.valid_input?(input)
                 turn_instruction
                 input = gets.chomp.to_s
+                input = turn_1.clean_input(input)
             end
         end
-        input = turn_1.clean_input(input)
+        
         board.add_piece(player_2.player, input)
         break if game_over?(board) != false
     end
