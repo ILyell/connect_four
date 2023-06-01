@@ -4,9 +4,10 @@ module CPU
 include GameOver
 
     def cpu_turn(board)
-        move = nil
-        if (winning_move(:ply_1, board) == !nil) && (winning_move(:ply_2, board) == !nil)
-            move = winning_move(:ply_2, board)
+        move = (winning_move(:ply_2, board)
+        player_move = winning_move(:ply_1, board)
+        if player_move == !nil && move == !nil
+            move
         elsif winning_move(:ply_2, board) == !nil
             move = winning_move(:ply_2, board)
         elsif winning_move(:ply_1, board) == !nil
@@ -19,8 +20,9 @@ include GameOver
 
     def winning_move(player, board)
         result = false
+        board_hold = board
         board.columns.keys.each do |key|
-            board.add_piece(player, key)
+            board_hold.add_piece(player, key)
             if game_over?(board) == player
                 result = key
                 break
