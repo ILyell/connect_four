@@ -2,7 +2,7 @@ module GameOver
 include Render
 
   def game_over?(board)
-  return false if board.last_piece.nil?
+    return false if board.last_piece.nil?
     game_win_vertical?(board) or 
     game_win_horizontal?(board) or 
     game_win_diagonal?(board) or
@@ -179,9 +179,9 @@ include Render
     draw
   end
 
-  def quit(input)
-    return nil unless input.is_a?(String)
+  # def quit(input)
+  #   return nil unless input.is_a?(String)
     
-    exit if input.downcase == "quit"
-  end
+  #   exit if input.downcase == "quit"
+  # end
 end
