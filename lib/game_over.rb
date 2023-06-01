@@ -2,6 +2,8 @@ module GameOver
 include Render
 
   def game_over?(board, coordinates)
+    return false if coordinates.nil?
+
     game_win_vertical?(board, coordinates) or 
     game_win_horizontal?(board, coordinates) or 
     game_win_diagonal?(board, coordinates) or
@@ -181,5 +183,11 @@ include Render
     end
     draw = :draw if count == 7
     draw
+  end
+
+  def quit(input)
+    return nil unless input.is_a?(String)
+    
+    exit if input.downcase == "quit"
   end
 end
